@@ -34,8 +34,8 @@ function cambiarLimiteDeExtraccion() {
         nuevoLimite = prompt("Ingrese un limite valido");
     }
 
-    limiteExtraccion = nuevoLimite;
-    return limiteExtraccion;
+    usuario.limiteExtraccion = nuevoLimite;
+    actualizarLimiteEnPantalla()
     
 
 }
@@ -91,7 +91,7 @@ function pagarServicio() {
         case  1 :
             "Monto a pagar : $1200";
             usuario.saldoCuenta = usuario.saldoCuenta - 1200;
-            actualizarSaldoEnPantalla();
+            actualizarSaldoEnPantalla()
             break;
             
         case 2 : 
@@ -102,26 +102,26 @@ function pagarServicio() {
         
         case 3 :
             "Monto a pagar : $750";
-            usuario.saldoCuenta = usuario.saldoCuenta -750;
+            usuario.saldoCuenta = usuario.saldoCuenta - 750;
             actualizarSaldoEnPantalla();
             break;
 
         case 4 :
             "Monto a pagar : $500";
-            saldoCuenta = saldoCuenta - 500;
+            usuario.saldoCuenta = usuario.saldoCuenta - 500;
             actualizarSaldoEnPantalla();
             break;
 
         case 5 :
             "Monto a pagar : $2000";
-            saldoCuenta = saldoCuenta - 2000;
-            "Nuevo saldo de cuenta :" +saldoCuenta;
+            usuario.saldoCuenta = usuario.saldoCuenta - 2000;
+            actualizarSaldoEnPantalla();
             break;
 
         case 6 :
-            "Monto a pagar : $1700";
-            saldoCuenta = saldoCuenta -1700;
-            "Nuevo saldo de cuenta :" +saldoCuenta;
+            "Monto a pagar : $1700"
+            usuario.saldoCuenta = usuario.saldoCuenta - 1700;
+            actualizarSaldoEnPantalla();
             break;
 
 
