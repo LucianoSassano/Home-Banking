@@ -61,11 +61,13 @@ function extraerDinero() {
 
 function depositarDinero() {
     var monto = prompt("Ingrese el monto a depositar");
+    monto = parseInt(monto);
     while(monto < 0){
         monto = prompt("Monto invalido,intente nuevamente");
     }
-    saldoCuenta = saldoCuenta +  monto;
-    return saldoCuenta;
+
+    usuario.saldoCuenta = usuario.saldoCuenta +  monto;
+    actualizarSaldoEnPantalla()
 
 }
 
