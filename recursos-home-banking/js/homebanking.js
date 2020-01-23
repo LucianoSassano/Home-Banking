@@ -133,19 +133,27 @@ function transferirDinero() {
 
 
 function iniciarSesion() {
-    var accountNumber = prompt ("Ingrese su numero de cuenta");
-        while(accountNumber != usuario.numeroCuenta){
-            accountNumber = prompt("Cuenta invalida , intente nuevamente");
-        }
-        var pass = prompt("Ingrese su codigo de seguridad");
-        if(pass != codigoSeguridad){
-            saldoCuenta = 0;
-            return "Codigo incorrecto , retencion de saldo";
-        }
+    
+    var accountNumber = document.getElementById("modal-account").value;
+    console.log(accountNumber);
+    accountNumber = parseInt(accountNumber);
+    var pass = document.getElementById("modal-pass").value;
+    console.log(pass);
+    pass = parseInt(pass);
+        console.log("antes");
+        if(accountNumber == usuario.accountNumber && pass == usuario.codigoSeguridad){
+            console.log("despues");
 
-        return "Acceso exitoso , bienvenido :" +usuario.userName;
+        alert("Acceso concedido ,bienvenido :"+usuario.userName);
+        document.querySelector('.login-button').addEventListener('click',function(){
+            document.querySelector('.bg-modal').style.display = 'none';
+
+        });
+    }
+    
 
 }
+
 
 //Funciones que actualizan el valor de las variables en el HTML
 function cargarNombreEnPantalla() {

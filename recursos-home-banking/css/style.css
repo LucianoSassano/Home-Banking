@@ -21,6 +21,50 @@ body {
     vertical-align: text-bottom;
 }
 
+.bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content{
+    width: 500px;
+        height: 300px;
+        background-color: white;
+        opacity: 1;
+        border-radius: 4px;
+        z-index: 9999;
+        text-align: center;
+}
+
+.modal-icon{
+    width: 17%;
+    height:auto;
+    padding: 20px;
+    
+}
+
+.modal-input{
+    width: 50%;
+    display: block;
+    margin: 15px auto;
+    
+}
+
+#modal-button{   
+    height: auto;
+    background-color: #2cc197;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    margin: 15px auto;
+}
+
 .align-left {
     display: flex;
     padding: 8px;
