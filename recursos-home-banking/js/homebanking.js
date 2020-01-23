@@ -73,12 +73,18 @@ function depositarDinero() {
 
 function pagarServicio() {
 
-    var opcion = prompt("1.Luz"+''+"2.Gas"+''+"3.Agua");
+    var opcion = prompt("1.Luz = $1200"+"/2.Gas = $900"+"/3.Agua = $750");
+    console.log('seleccionado');
+    opcion = parseInt(opcion);
+    console.log('parseo');
+    // utilize los logeos para debugear
 
     switch(opcion){
 
-
+        
+        
         case 1 :
+            console.log('eleccion');
             var monto = 1200
             usuario.saldoCuenta = usuario.saldoCuenta - monto;
             actualizarSaldoEnPantalla()
@@ -93,24 +99,6 @@ function pagarServicio() {
         case 3 :
             "Monto a pagar : $750";
             usuario.saldoCuenta = usuario.saldoCuenta - 750;
-            actualizarSaldoEnPantalla();
-            break;
-
-        case 4 :
-            "Monto a pagar : $500";
-            usuario.saldoCuenta = usuario.saldoCuenta - 500;
-            actualizarSaldoEnPantalla();
-            break;
-
-        case 5 :
-            "Monto a pagar : $2000";
-            usuario.saldoCuenta = usuario.saldoCuenta - 2000;
-            actualizarSaldoEnPantalla();
-            break;
-
-        case 6 :
-            "Monto a pagar : $1700"
-            usuario.saldoCuenta = usuario.saldoCuenta - 1700;
             actualizarSaldoEnPantalla();
             break;
 
