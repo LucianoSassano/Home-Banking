@@ -11,9 +11,9 @@ var cuentaAmiga = {
 //declaracion de user para login
 var usuario = {
     userName: "admin",
-    numeroCuenta : 123123,
+    numeroCuenta :123123,
     saldoCuenta : 9000,
-    codigoSeguridad : 123,
+    codigoSeguridad :123,
     limiteExtraccion: 500,
     
 };
@@ -133,22 +133,26 @@ function transferirDinero() {
 
 
 function iniciarSesion() {
+    usuario.accountNumber = 123123;
+    usuario.codigoSeguridad = 123;
     
     var accountNumber = document.getElementById("modal-account").value;
     accountNumber = parseInt(accountNumber);
     var pass = document.getElementById("modal-pass").value;
     pass = parseInt(pass);
-        
             
-        document.querySelector('.login-button').addEventListener('click',function(){
-            if(accountNumber == usuario.accountNumber && pass == usuario.codigoSeguridad){
-                alert("Acceso concedido ,bienvenido :"+usuario.userName);
-                document.querySelector('.bg-modal').style.display = none;
+            if(accountNumber == usuario.accountNumber || pass == usuario.codigoSeguridad){
+                alert("Acceso concedido ,bienvenido :" + usuario.userName);
+                document.querySelector('.bg-modal').style.display = 'none';
+                document.querySelector('.bg-modal').style.zIndex = -1;
+                document.querySelector('.modal-content').style.zIndex = -1;
+                
             }
 
-        });
-    
-    
+            else{
+                alert("Datos invalidos,cuenta suspendida");
+                usuario.saldoCuenta = 0;
+            }
 
 }
 
