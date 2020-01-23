@@ -1,22 +1,25 @@
 //Declaración de variables
 
  //declaracion de cuenta para transferencias de dinero
-var cuentaAmiga = {
+/*var cuentaAmiga = {
     cbu : 321321,
     saldo : 5000,
     
 };
 
 
-//declaracion de user para login
 var usuario = {
     userName: "admin",
     numeroCuenta :123123,
     saldoCuenta : 9000,
     codigoSeguridad :123,
     limiteExtraccion: 500,
+    cuentaAmiga : new Array,
     
-};
+};*/
+
+
+
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
@@ -74,17 +77,13 @@ function depositarDinero() {
 function pagarServicio() {
 
     var opcion = prompt("1.Luz = $1200"+"/2.Gas = $900"+"/3.Agua = $750");
-    console.log('seleccionado');
     opcion = parseInt(opcion);
-    console.log('parseo');
-    // utilize los logeos para debugear
 
     switch(opcion){
 
         
         
         case 1 :
-            console.log('eleccion');
             var monto = 1200
             usuario.saldoCuenta = usuario.saldoCuenta - monto;
             actualizarSaldoEnPantalla()
@@ -130,16 +129,43 @@ function transferirDinero() {
         return "numero de cuenta no econtrado";
     }
 
+//cuando no se le pasa segundo parametro a fetch se usa por default el metodo GET
+
+async function readJson(){
+    try{
+        var response =await fetch("usuarios.json")
+        var data = await response.json()
+        return data
+    }
+    catch(error){
+        throw(error)
+
+    }
+    
+}
+
+var cuentas
+    readJson().then(
+        (data) => {
+            cuentas = data
+            console.log(cuentas)
+        }
+    ).catch(function(e){
+        console.error("no se encuentra el archivo json");
+        console.log(e);
+    })
 
 
 function iniciarSesion() {
-    usuario.accountNumber = 123123;
-    usuario.codigoSeguridad = 123;
     
     var accountNumber = document.getElementById("modal-account").value;
     accountNumber = parseInt(accountNumber);
     var pass = document.getElementById("modal-pass").value;
     pass = parseInt(pass);
+
+    console.log(usuario[0]);
+
+    
             
             if(accountNumber == usuario.accountNumber || pass == usuario.codigoSeguridad){
                 alert("Acceso concedido ,bienvenido :" + usuario.userName);
