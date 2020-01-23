@@ -1,12 +1,12 @@
 //Declaración de variables
+
  //declaracion de cuenta para transferencias de dinero
-var cuenta = {
-    cbu : 0,
-    saldo : 0,
+var cuentaAmiga = {
+    cbu : 321321,
+    saldo : 5000,
     
 };
-// cuentas p/ transferencia de dinero
-var cuentasAmigas = new Array;
+
 
 //declaracion de user para login
 var usuario = {
@@ -73,26 +73,14 @@ function depositarDinero() {
 
 function pagarServicio() {
 
-    var servicio = prompt(
+    var opcion = prompt("1.Luz"+''+"2.Gas"+''+"3.Agua");
 
-        "Ingrese el numero del servico que desea pagar:"+
+    switch(opcion){
 
-        "1.Luz"+
-        "2.Gas"+
-        "3.Agua"+
-        "4.Telefonia"+
-        "5.Internet"+
-        "6.Seguro"
-        
-    );
-    switch(servicio){
 
-        // note =>  la funcionalidad de descontar el monto del saldo debe delegarse a otra funcion para mayor modularidad
-        // y facilidad de mantenimiento
-
-        case  1 :
-            "Monto a pagar : $1200";
-            usuario.saldoCuenta = usuario.saldoCuenta - 1200;
+        case 1 :
+            var monto = 1200
+            usuario.saldoCuenta = usuario.saldoCuenta - monto;
             actualizarSaldoEnPantalla()
             break;
             
@@ -132,25 +120,29 @@ function pagarServicio() {
 }
 
 function transferirDinero() {
-    if(saldoCuenta < 0){
-        return "Saldo insuficiente";
-    }
+
     var cbu = prompt("Ingrese el cbu de la cuenta destino");
-    for(i = 0 ; i < cuentasAmigas.length() ;i++){
-        if(cbu === cuentasAmigas[i].cbu){
+    
+        if(cbu == cuentaAmiga.cbu){
+            
+            
             var a = prompt("Ingrese el monto a transferir");
-            while(a < saldoCuenta){
-                a = prompt("Ingrese un monto menor o igual a :" +saldoCuenta);
+            while(a <= 0){
+                a = prompt("Ingrese un monto valido");
             }
-            cuentasAmigas[i].saldo = saldo + a;
-            return "Usted transfirio : $" +a +"de forma exitosa";
+            while(a > usuario.saldoCuenta){
+                a = prompt("Ingrese un monto menor o igual a :" +usuario.saldoCuenta);
+            }
+            usuario.saldoCuenta = usuario.saldoCuenta - a;
+            actualizarSaldoEnPantalla();
+            parseInt(a);
+            cuentaAmiga.saldo = cuentaAmiga.saldo + a;
+            return "Usted transfirio : $" + a +"de forma exitosa";
         }
+        return "numero de cuenta no econtrado";
     }
 
-    return "numero de cuenta no econtrado";
-    
 
-}
 
 function iniciarSesion() {
     var accountNumber = prompt ("Ingrese su numero de cuenta");
