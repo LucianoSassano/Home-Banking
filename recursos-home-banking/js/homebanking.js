@@ -135,21 +135,19 @@ function transferirDinero() {
 function iniciarSesion() {
     
     var accountNumber = document.getElementById("modal-account").value;
-    console.log(accountNumber);
     accountNumber = parseInt(accountNumber);
     var pass = document.getElementById("modal-pass").value;
-    console.log(pass);
     pass = parseInt(pass);
-        console.log("antes");
-        if(accountNumber == usuario.accountNumber && pass == usuario.codigoSeguridad){
-            console.log("despues");
-
-        alert("Acceso concedido ,bienvenido :"+usuario.userName);
+        
+            
         document.querySelector('.login-button').addEventListener('click',function(){
-            document.querySelector('.bg-modal').style.display = 'none';
+            if(accountNumber == usuario.accountNumber && pass == usuario.codigoSeguridad){
+                alert("Acceso concedido ,bienvenido :"+usuario.userName);
+                document.querySelector('.bg-modal').style.display = none;
+            }
 
         });
-    }
+    
     
 
 }
