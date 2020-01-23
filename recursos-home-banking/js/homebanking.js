@@ -129,8 +129,6 @@ function transferirDinero() {
         return "numero de cuenta no econtrado";
     }
 
-//cuando no se le pasa segundo parametro a fetch se usa por default el metodo GET
-
 async function readJson(){
     try{
         var response =await fetch("usuarios.json")
@@ -148,13 +146,14 @@ var cuentas
     readJson().then(
         (data) => {
             cuentas = data
-            console.log(cuentas)
+            
         }
     ).catch(function(e){
         console.error("no se encuentra el archivo json");
-        console.log(e);
+        console.log(e)
     })
 
+    console.log(cuentas);
 
 function iniciarSesion() {
     
