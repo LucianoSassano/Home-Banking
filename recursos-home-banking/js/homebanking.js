@@ -1,133 +1,186 @@
-//Declaración de variables
 
- //declaracion de cuenta para transferencias de dinero
-/*var cuentaAmiga = {
-    cbu : 321321,
-    saldo : 5000,
+
+document.addEventListener("DOMContentLoaded",() =>{
+
+    readJson().then(
+        (data) => {
+            cuentas = data
+            document.getElementById('modal-button').addEventListener("click",() => {
+                  
+            var cuenta = iniciarSesion();
+            console.log(cuenta);
+            
+            if (cuenta == null) 
+            {
+
+                console.log("no inicio sesion");
+                
+                alert("no existe")
+            } else {
+                console.log("inicio sesion");
+                
+
+                alert("Bienvenido :" + cuenta.userName);
+                document.querySelector('.bg-modal').style.display = 'none';
+                document.querySelector('.bg-modal').style.zIndex = -1;
+                document.querySelector('.modal-content').style.zIndex = -1;
+
+                cargarNombreEnPantalla(cuenta.userName);
+                actualizarSaldoEnPantalla(cuenta.saldoCuenta);
+                actualizarLimiteEnPantalla(cuenta.limiteExtraccion);
+                cambiarLimiteDeExtraccion(cuenta);
+                extraerDinero(cuenta);
+                depositarDinero(cuenta);
+                pagarServicio(cuenta);
+                transferirDinero(cuenta);
+            }
+
+            })
+            
     
-};
+        }
+    ).catch(function(e){
+        console.error("no se encuentra el archivo json");
+        console.log(e)
+    });
 
-
-var usuario = {
-    userName: "admin",
-    numeroCuenta :123123,
-    saldoCuenta : 9000,
-    codigoSeguridad :123,
-    limiteExtraccion: 500,
-    cuentaAmiga : new Array,
     
-};*/
+
+
+})
+
+ //set de local storage
+
 
 
 
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
-    cargarNombreEnPantalla();
-    actualizarSaldoEnPantalla();
-    actualizarLimiteEnPantalla();
 }
 
 
-//Funciones que tenes que completar
-function cambiarLimiteDeExtraccion() {
-    var nuevoLimite = prompt("Ingrese su nuevo limite de extraccion");
+function cambiarLimiteDeExtraccion(cuenta) {
+    document.getElementById('limit-btn').addEventListener('click', () =>{
+        var nuevoLimite = prompt("Ingrese su nuevo limite de extraccion");
 
     while(nuevoLimite < 0){
         nuevoLimite = prompt("Ingrese un limite valido");
     }
 
-    usuario.limiteExtraccion = nuevoLimite;
-    actualizarLimiteEnPantalla()
+    cuenta.limiteExtraccion = nuevoLimite;
+    actualizarLimiteEnPantalla(nuevoLimite);
+    } )
     
-
 }
 
-function extraerDinero() {
-    var cantidad = prompt("Ingrese la cantidad que desea retirar");
+function extraerDinero(cuenta) {
+    document.getElementById('extraer-btn').addEventListener('click',() =>{
 
-    if(usuario.saldoCuenta <= 0 ){
+    var cantidad = prompt("Ingrese la cantidad que desea retirar");
+    var rta;
+
+    if(cuenta.saldoCuenta <= 0 ){
         return "Saldo insuficiente";
     }
-    while(cantidad > usuario.saldoCuenta || cantidad > usuario.limiteExtraccion){
-        cantidad = prompt("Saldo actual de :" +usuario.saldoCuenta +"ingrese un monto valido dentro de los limites de extracion");
+    while(cantidad > cuenta.saldoCuenta || cantidad > cuenta.limiteExtraccion){
+        cantidad = prompt("Saldo actual de :" +cuenta.saldoCuenta +"ingrese un monto valido dentro de los limites de extracion");
     }
-    
 
 
-    usuario.saldoCuenta = usuario.saldoCuenta - cantidad ;
-    actualizarSaldoEnPantalla()
+    cuenta.saldoCuenta = cuenta.saldoCuenta - cantidad ;
+    rta = cuenta.saldoCuenta;
+
+    actualizarSaldoEnPantalla(rta);
+    })
 
     
 
 }
 
-function depositarDinero() {
+function depositarDinero(cuenta) {
+   document.getElementById('deposit-btn').addEventListener('click',() => {
+    var rta;
     var monto = prompt("Ingrese el monto a depositar");
     monto = parseInt(monto);
     while(monto < 0){
         monto = prompt("Monto invalido,intente nuevamente");
     }
 
-    usuario.saldoCuenta = usuario.saldoCuenta +  monto;
-    actualizarSaldoEnPantalla()
+    cuenta.saldoCuenta = cuenta.saldoCuenta +  monto;
+    rta = cuenta.saldoCuenta;
+    actualizarSaldoEnPantalla(rta);
+   })
 
 }
 
-function pagarServicio() {
+function pagarServicio(cuenta) {
 
-    var opcion = prompt("1.Luz = $1200"+"/2.Gas = $900"+"/3.Agua = $750");
+    document.getElementById('pay-btn').addEventListener('click',() => {
+        var opcion = prompt("1.Luz = $1200"+"/2.Gas = $900"+"/3.Agua = $750");
     opcion = parseInt(opcion);
+    var rta;
 
-    switch(opcion){
-
-        
+    switch(opcion){        
         
         case 1 :
             var monto = 1200
-            usuario.saldoCuenta = usuario.saldoCuenta - monto;
-            actualizarSaldoEnPantalla()
+            cuenta.saldoCuenta = cuenta.saldoCuenta - monto;
+            rta = cuenta.saldoCuenta;
+            actualizarSaldoEnPantalla(rta);
             break;
             
         case 2 : 
             "Monto a pagar : $900";
-            usuario.saldoCuenta = usuario.saldoCuenta - 900;
-            actualizarSaldoEnPantalla();
+            cuenta.saldoCuenta = cuenta.saldoCuenta - 900;
+            rta = cuenta.saldoCuenta;
+            actualizarSaldoEnPantalla(rta);
             break;
         
         case 3 :
             "Monto a pagar : $750";
-            usuario.saldoCuenta = usuario.saldoCuenta - 750;
-            actualizarSaldoEnPantalla();
+            cuenta.saldoCuenta = cuenta.saldoCuenta - 750;
+            rta = cuenta.saldoCuenta;
+            actualizarSaldoEnPantalla(rta);
             break;
 
 
     }
+    })
 
 }
 
-function transferirDinero() {
-
-    var cbu = prompt("Ingrese el cbu de la cuenta destino");
+function transferirDinero(cuenta) {
     
-        if(cbu == cuentaAmiga.cbu){
-            
-            
-            var a = prompt("Ingrese el monto a transferir");
-            while(a <= 0){
-                a = prompt("Ingrese un monto valido");
+    console.log("inicio")
+    document.getElementById('transfer-btn').addEventListener('click',() => {
+        console.log("entro");
+        
+        var rta;
+        var cbu = prompt("Ingrese el cbu de la cuenta destino");
+        
+          for(var i = 0 ; i < cuenta.cuentaAmiga.length ; i++){
+            if(cbu == cuenta.cuentaAmiga[i].cbu){
+    
+                var a = prompt("Ingrese el monto a transferir");
+                while(a <= 0){
+                    a = prompt("Ingrese un monto valido");
+                }
+                while(a > cuenta.saldoCuenta){
+                    a = prompt("Ingrese un monto menor o igual a :" +cuenta.saldoCuenta);
+                }
+                cuenta.saldoCuenta = cuenta.saldoCuenta - a;
+                rta = cuenta.saldoCuenta;
+                actualizarSaldoEnPantalla(rta);
+                parseInt(a);
+                cuenta.cuentaAmiga[i].saldo =   cuenta.cuentaAmiga[i].saldo + a;
+                return "Usted transfirio : $" + a +"de forma exitosa";
             }
-            while(a > usuario.saldoCuenta){
-                a = prompt("Ingrese un monto menor o igual a :" +usuario.saldoCuenta);
-            }
-            usuario.saldoCuenta = usuario.saldoCuenta - a;
-            actualizarSaldoEnPantalla();
-            parseInt(a);
-            cuentaAmiga.saldo = cuentaAmiga.saldo + a;
-            return "Usted transfirio : $" + a +"de forma exitosa";
+            return "numero de cuenta no econtrado";
         }
-        return "numero de cuenta no econtrado";
-    }
+    })
+
+      }
 
 async function readJson(){
     try{
@@ -141,19 +194,10 @@ async function readJson(){
     }
     
 }
+iniciarSesion
 
-var cuentas
-    readJson().then(
-        (data) => {
-            cuentas = data
-            
-        }
-    ).catch(function(e){
-        console.error("no se encuentra el archivo json");
-        console.log(e)
-    })
-
-    console.log(cuentas);
+var arrIndex = 0 ;
+    
 
 function iniciarSesion() {
     
@@ -161,37 +205,46 @@ function iniciarSesion() {
     accountNumber = parseInt(accountNumber);
     var pass = document.getElementById("modal-pass").value;
     pass = parseInt(pass);
+    var statusCode;
+    var user;
+    
 
-    console.log(usuario[0]);
+            for(var i = 0 ; i < cuentas.length ; i++){
+                if(accountNumber == cuentas[i].numeroCuenta && pass == cuentas[i].codigoSeguridad){
+                    user = cuentas[i];
+                    var j = i;
+                    arrIndex = i;
+                    i = cuentas.length + 1;
+                    statusCode = 1;
+                    
 
+                        return user;
+                    
+                }
+            }
+            return null
+            if(statusCode != 1){
+                alert('usuario no encontrado');
+            }
+            
     
             
-            if(accountNumber == usuario.accountNumber || pass == usuario.codigoSeguridad){
-                alert("Acceso concedido ,bienvenido :" + usuario.userName);
-                document.querySelector('.bg-modal').style.display = 'none';
-                document.querySelector('.bg-modal').style.zIndex = -1;
-                document.querySelector('.modal-content').style.zIndex = -1;
-                
-            }
-
-            else{
-                alert("Datos invalidos,cuenta suspendida");
-                usuario.saldoCuenta = 0;
-            }
+            
+            
 
 }
 
 
 //Funciones que actualizan el valor de las variables en el HTML
-function cargarNombreEnPantalla() {
-    document.getElementById("nombre").innerHTML = "Bienvenido/a " + usuario.userName;
+function cargarNombreEnPantalla(name) {
+    document.getElementById("nombre").innerHTML = "Bienvenido/a " + name;
 }
 
-function actualizarSaldoEnPantalla() {
-    document.getElementById("saldo-cuenta").innerHTML = "$" + usuario.saldoCuenta;
+function actualizarSaldoEnPantalla(saldo) {
+    document.getElementById("saldo-cuenta").innerHTML = "$" + saldo;
 }
 
-function actualizarLimiteEnPantalla() {
-    document.getElementById("limite-extraccion").innerHTML = "Tu límite de extracción es: $" + usuario.limiteExtraccion;
+function actualizarLimiteEnPantalla(limite) {
+    document.getElementById("limite-extraccion").innerHTML = "Tu límite de extracción es: $" + limite;
 }
 

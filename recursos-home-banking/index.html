@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="js/homebanking.js"></script>
+    
     <title>HOME BANKING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -32,11 +33,11 @@
     <div class="white-container">
       <div class="menu-container">
         <h1 class="tu-cuenta">Tu cuenta</h1>
-        <button class="links" onclick="extraerDinero()">Extraer dinero</button>
-        <button class="links" onclick="depositarDinero()">Depositar dinero</button>
-        <button class="links" onclick="pagarServicio()">Pagar servicios</button>
-        <button class="links" onclick="transferirDinero()">Transferir dinero</button>
-        <button class="links" onclick="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
+        <button class="links" id="extraer-btn" onclick="extraerDinero()">Extraer dinero</button>
+        <button class="links" id="deposit-btn" onclick="depositarDinero()">Depositar dinero</button>
+        <button class="links" id="pay-btn" onclick="pagarServicio()">Pagar servicios</button>
+        <button class="links" id="transfer-btn" onclick="transferirDinero()">Transferir dinero</button>
+        <button class="links" id="limit-btn" onclick="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
       </div>
       <div class="green-container">
         <div class="cuenta-info">
