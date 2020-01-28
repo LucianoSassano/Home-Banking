@@ -49,7 +49,28 @@ document.addEventListener("DOMContentLoaded",() =>{
 
 })
 
- //set de local storage
+// local Storage
+
+var accounts;
+
+function cargarCuentas(){
+    var rta = localStorage.getItem("accounts");
+    console.log(rta);
+
+    if (rta){
+        accounts = JSON.parse(rta);
+        console.log(accounts);
+    }else{
+        $getJson("js/usuarios.json", (data) => {
+            var rta = JSON.stringify(data);
+            console.log(rta);
+            localStorage.setItem("accounts",rta);
+            accounts = data;
+            console.log(accounts);
+        })
+    }
+}
+
 
 
 
