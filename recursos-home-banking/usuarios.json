@@ -1,2 +1,24 @@
-[{"userName":"admin","numeroCuenta":123123,"saldoCuenta":8000,"codigoSeguridad":123,"limiteExtraccion":500,"cuentaAmiga":[{"cbu":321321,"saldo":5000},{"cbu":321325,"saldo":7000}]}
-,{"userName":"user1","numeroCuenta":321321,"saldoCuenta":5000,"codigoSeguridad":321,"limiteExtraccion":2500,"cuentaAmiga":[{"cbu":333444,"saldo":8000},{"cbu":321325,"saldo":7000}]}]
+[
+  {
+    "userName": "admin",
+    "numeroCuenta": 123123,
+    "saldoCuenta": 8000,
+    "codigoSeguridad": 123,
+    "limiteExtraccion": 500,
+    "cuentaAmiga": [
+      { "cbu": 321321, "saldo": 5000 },
+      { "cbu": 321325, "saldo": 7000 }
+    ]
+  },
+  {
+    "userName": "user1",
+    "numeroCuenta": 321321,
+    "saldoCuenta": 5000,
+    "codigoSeguridad": 321,
+    "limiteExtraccion": 2500,
+    "cuentaAmiga": [
+      { "cbu": 333444, "saldo": 8000 },
+      { "cbu": 321325, "saldo": 7000 }
+    ]
+  }
+]

@@ -1,48 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="js/homebanking.js"></script>
-    
+
     <title>HOME BANKING</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
     <div class="header">
-      <img class="logo" src="img/logo.png"/>
+      <img class="logo" src="img/logo.png" />
       <div class="align-left">
         <span id="nombre">Bienvenido/a</span>
-        <img class="avatar" src="img/avatar.svg"/>
+        <img class="avatar" src="img/avatar.svg" />
       </div>
     </div>
     <div class="bg-modal" id="modal-container">
       <div class="modal-content">
-        <img class="modal-icon" src="img/hombre.png" alt="profile-pic-icon">
+        <img class="modal-icon" src="img/hombre.png" alt="profile-pic-icon" />
 
-        <form action="" >
-          <input class="modal-input" id="modal-account" type="text" placeholder="Numero de Cuenta" required>
-          <input class="modal-imput" id="modal-pass" type="text" placeholder="Codigo de seguridad" required>
-          <input class="login-button" id="modal-button" type="button" value="Login" onclick="iniciarSesion()" >
+        <form action="">
+          <input
+            class="modal-input"
+            id="modal-account"
+            type="text"
+            placeholder="Numero de Cuenta"
+            required
+          />
+          <input
+            class="modal-imput"
+            id="modal-pass"
+            type="text"
+            placeholder="Codigo de seguridad"
+            required
+          />
+          <input
+            class="login-button"
+            id="modal-button"
+            type="button"
+            value="Login"
+            onclick="iniciarSesion()"
+          />
         </form>
       </div>
     </div>
     <div class="white-container">
       <div class="menu-container">
         <h1 class="tu-cuenta">Tu cuenta</h1>
-        <button class="links" id="extraer-btn" onclick="extraerDinero()">Extraer dinero</button>
-        <button class="links" id="deposit-btn" onclick="depositarDinero()">Depositar dinero</button>
-        <button class="links" id="pay-btn" onclick="pagarServicio()">Pagar servicios</button>
-        <button class="links" id="transfer-btn" onclick="transferirDinero()">Transferir dinero</button>
-        <button class="links" id="limit-btn" onclick="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
+        <button class="links" id="extraer-btn" onclick="extraerDinero()">
+          Extraer dinero
+        </button>
+        <button class="links" id="deposit-btn" onclick="depositarDinero()">
+          Depositar dinero
+        </button>
+        <button class="links" id="pay-btn" onclick="pagarServicio()">
+          Pagar servicios
+        </button>
+        <button class="links" id="transfer-btn" onclick="transferirDinero()">
+          Transferir dinero
+        </button>
+        <button
+          class="links"
+          id="limit-btn"
+          onclick="cambiarLimiteDeExtraccion()"
+        >
+          Cambiar límite de extracción
+        </button>
       </div>
       <div class="green-container">
         <div class="cuenta-info">
           <p>Saldo en tu cuenta</p>
           <h3 id="saldo-cuenta">$</h3>
-          <p id="limite-extraccion">Tu límite de extracción es: </p>
+          <p id="limite-extraccion">Tu límite de extracción es:</p>
         </div>
       </div>
     </div>
