@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded",() =>{
     readJson().then(
         (data) => {
             cuentas = data
+            cargarCuentas();
             document.getElementById('modal-button').addEventListener("click",() => {
                   
             var cuenta = iniciarSesion();
@@ -55,21 +56,20 @@ var accounts;
 
 function cargarCuentas(){
     var rta = localStorage.getItem("accounts");
-    console.log(rta);
 
     if (rta){
         accounts = JSON.parse(rta);
-        console.log(accounts);
     }else{
-        $getJson("js/usuarios.json", (data) => {
+        $.getJSON("usuarios.json", (data) => {
             var rta = JSON.stringify(data);
-            console.log(rta);
             localStorage.setItem("accounts",rta);
             accounts = data;
-            console.log(accounts);
         })
     }
 }
+
+
+
 
 
 
@@ -173,7 +173,7 @@ function pagarServicio(cuenta) {
 
 function transferirDinero(cuenta) {
     
-    console.log("inicio")
+    
     document.getElementById('transfer-btn').addEventListener('click',() => {
         console.log("entro");
         
@@ -226,33 +226,16 @@ function iniciarSesion() {
     accountNumber = parseInt(accountNumber);
     var pass = document.getElementById("modal-pass").value;
     pass = parseInt(pass);
-    var statusCode;
     var user;
-    
 
             for(var i = 0 ; i < cuentas.length ; i++){
                 if(accountNumber == cuentas[i].numeroCuenta && pass == cuentas[i].codigoSeguridad){
                     user = cuentas[i];
-                    var j = i;
-                    arrIndex = i;
-                    i = cuentas.length + 1;
-                    statusCode = 1;
-                    
-
-                        return user;
-                    
+                    return user;
                 }
             }
-            return null
-            if(statusCode != 1){
-                alert('usuario no encontrado');
-            }
+            return null;
             
-    
-            
-            
-            
-
 }
 
 
